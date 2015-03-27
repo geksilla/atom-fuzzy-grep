@@ -1,0 +1,15 @@
+{
+  "name": "atom-fuzzy-grep",
+  "main": "./lib/atom-fuzzy-grep",
+  "version": "0.0.0",
+  "description": "Fuzzy grep project using ag, ack, grep or git-grep",
+  "repository": "https://github.com/geksilla/atom-fuzzy-grep",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+    "space-pen": "^5.1.1",
+    "atom-space-pen-views": "^2.0.0"
+  }
+}
