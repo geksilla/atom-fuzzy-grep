@@ -25,12 +25,15 @@ module.exports =
       @process = new BufferedProcess({command, args, stdout, stderr})
 
     parseOutput: (output, callback)->
-      items = output.split(/\n/).map (item)->
+      items = []
+      for item in output.split(/\n/)
+        break unless item.length
         [path, line, column, content...] = item.split(':')
-        filePath: path
-        line: line-1
-        column: column-1
-        content: content.join(':').replace(/^s/g, '')
+        items.push
+          filePath: path
+          line: line-1
+          column: column-1
+          content: content.join(':').replace(/^s/g, '')
       callback items
 
     destroy: ->
