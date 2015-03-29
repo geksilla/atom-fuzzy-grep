@@ -10,6 +10,9 @@ module.exports =
       type: 'number'
       default: 3
       order: 1
+    grepCommandString:
+      type: 'string'
+      default: 'ag -i --nocolor --nogroup'
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
       'fuzzy-grep:toggle': => @createView().toggle()

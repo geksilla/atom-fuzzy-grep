@@ -63,9 +63,9 @@ class GrepView extends SelectListView
     @process.run(@setItems.bind(@))
 
   killRunner: ->
-    if @process
-      @process.destroy()
-      @process = null
+    return unless @process
+    @process.destroy()
+    @process = null
 
   toggle: ->
     if @panel?.isVisible()
