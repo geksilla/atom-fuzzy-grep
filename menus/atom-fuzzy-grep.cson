@@ -2,7 +2,7 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle atom-fuzzy-grep'
+      'label': 'Fuzzy Grep Toggle'
       'command': 'atom-fuzzy-grep:toggle'
     }
   ]
@@ -10,11 +10,11 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'atom-fuzzy-grep'
+      'label': 'Fuzzy Grep'
       'submenu': [
         {
           'label': 'Toggle'
-          'command': 'atom-fuzzy-grep:toggle'
+          'command': 'fuzzy-grep:toggle'
         }
       ]
     ]
