@@ -34,7 +34,12 @@ module.exports =
       callback items
 
     getColumn: (content)->
-      match = content.match(new RegExp(@search, 'gi'))?[0]
+      # escaped characters in regexp can cause error
+      # skip it for a while
+      try
+        match = content.match(new RegExp(@search, 'gi'))?[0]
+      catch error
+        match = false
       if match then content.indexOf(match) else 0
 
     destroy: ->

@@ -18,6 +18,8 @@ class GrepView extends SelectListView
     @addClass 'atom-fuzzy-grep-list'
     atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', =>
       @minFilterLength = atom.config.get 'atom-fuzzy-grep.minSymbolsToStartSearch'
+    atom.config.observe 'atom-fuzzy-grep.maxCandidates', =>
+      @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
 
   getFilterKey: ->
 
@@ -39,14 +41,14 @@ class GrepView extends SelectListView
       atom.workspace.open(filePath).done =>
         @moveCursor line, column
 
-  moveCursor: (line=-1, column=-1)->
+  moveCursor: (line=-1, column=0)->
     return unless line >=0
 
     if textEditor = atom.workspace.getActiveTextEditor()
       position = new Point(line)
       textEditor.scrollToBufferPosition(position, center: true)
       textEditor.setCursorBufferPosition(position)
-      if column >= 0
+      if column > 0
         textEditor.moveRight column
       else
         textEditor.moveToFirstCharacterOfLine()
