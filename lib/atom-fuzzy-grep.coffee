@@ -2,10 +2,10 @@ GrepView = require './atom-fuzzy-grep-view'
 
 module.exports =
   config:
-    # useGitGrepForGitProjects:
-    #   type: 'boolean'
-    #   default: false
-    #   order: 0
+    detectGitProjectAndUseGitGrep:
+      type: 'boolean'
+      default: false
+      order: 0
     minSymbolsToStartSearch:
       type: 'number'
       default: 3
@@ -16,7 +16,7 @@ module.exports =
     maxCandidates:
       type: 'number'
       default: 100
-  activate: ->
+  activate: ()->
     @editorSubscription = atom.commands.add 'atom-workspace',
       'fuzzy-grep:toggle': => @createView().toggle()
 

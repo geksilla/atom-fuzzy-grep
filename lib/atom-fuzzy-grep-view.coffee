@@ -61,15 +61,21 @@ class GrepView extends SelectListView
   grepProject: ->
     return if @minFilterLength and @filterEditorView.getText().length < @minFilterLength
     @killRunner()
-    @process = new Runner(@filterEditorView.getText(), atom.project.getPaths()[0])
+    @process = new Runner(@filterEditorView.getText(), @getProjectPath())
     @process.run(@setItems.bind(@))
+
+  getProjectPath: ->
+    # TODO not sure if this a proper way
+    atom.project.getPaths().filter((item)->
+      atom.workspace.getActiveTextEditor().buffer.file.path.startsWith item
+    )[0]
 
   killRunner: ->
     return unless @process
     @process.destroy()
     @process = null
 
-  toggle: ->
+  toggle: ()->
     if @panel?.isVisible()
       @panel?.show()
     else

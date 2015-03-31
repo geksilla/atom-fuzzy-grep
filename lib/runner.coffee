@@ -4,20 +4,28 @@ module.exports =
   class Runner
     commandString: null
     process: null
+    useGitGrep: false
 
-    constructor: (@search, @folder)->
+    constructor: (@search, @rootPath)->
       atom.config.observe 'atom-fuzzy-grep.grepCommandString', =>
         @commandString = atom.config.get 'atom-fuzzy-grep.grepCommandString'
+      atom.config.observe 'atom-fuzzy-grep.detectGitProjectAndUseGitGrep', =>
+        @useGitGrep = atom.config.get 'atom-fuzzy-grep.detectGitProjectAndUseGitGrep'
 
     run: (callback)->
-      [command, args...] = @commandString.split(/\s/)
-      args = args.concat @search, @folder
+      if @useGitGrep and @isGitRepo()
+        command = 'git'
+        args = ['grep', '-n', '-e', @search]
+      else
+        [command, args...] = @commandString.split(/\s/)
+        args = args.concat @search
+      options = cwd: @rootPath
 
       stdout = (output)=>
         @parseOutput(output, callback)
       stderr = (error)->
         callback(error: error)
-      @process = new BufferedProcess({command, args, stdout, stderr})
+      @process = new BufferedProcess({command, args, stdout, stderr, options})
       @process
 
     parseOutput: (output, callback)->
@@ -43,4 +51,8 @@ module.exports =
       if match then content.indexOf(match) else 0
 
     destroy: ->
-      @process.kill()
+      @process?.kill()
+
+    isGitRepo: ->
+      atom.project.repositories.some (item)=>
+        @rootPath.startsWith item.repo?.workingDirectory
