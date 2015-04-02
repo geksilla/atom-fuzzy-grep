@@ -13,12 +13,8 @@ module.exports =
         @useGitGrep = atom.config.get 'atom-fuzzy-grep.detectGitProjectAndUseGitGrep'
 
     run: (callback)->
-      if @useGitGrep and @isGitRepo()
-        command = 'git'
-        args = ['grep', '-n', '-e', @search]
-      else
-        [command, args...] = @commandString.split(/\s/)
-        args = args.concat @search
+      @commandString = 'git grep -n -e' if @useGitGrep and @isGitRepo()
+      [command, args...] = "#{@commandString} #{@search}".split(/\s/)
       options = cwd: @rootPath
 
       stdout = (output)=>
