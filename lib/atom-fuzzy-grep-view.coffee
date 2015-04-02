@@ -74,13 +74,19 @@ class GrepView extends SelectListView
       atom.workspace.getActiveTextEditor().buffer.file.path.startsWith item
     )[0]
 
+  setSelection: ->
+    editor = atom.workspace.getActiveTextEditor()
+    if editor?.getSelectedText()
+      @filterEditorView.setText(editor.getSelectedText())
+
   destroy: ->
     @detach()
 
-  toggle: ()->
+  toggle: ->
     if @panel?.isVisible()
       @panel?.show()
     else
       @storeFocusedElement()
       @panel.show()
       @focusFilterEditor()
+      @setSelection()
