@@ -7,5 +7,6 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-'atom-text-editor.vim-mode:not(.insert-mode)':
-  ', f f': 'fuzzy-grep:toggle'
+
+'atom-workspace':
+  'ctrl-alt-g': 'fuzzy-grep:toggle'

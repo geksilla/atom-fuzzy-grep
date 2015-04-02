@@ -16,9 +16,15 @@ module.exports =
     maxCandidates:
       type: 'number'
       default: 100
-  activate: ()->
+
+  activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
       'fuzzy-grep:toggle': => @createView().toggle()
+
+  deactivate: ->
+    console.error 'Deactivated :('
+    @grepView?.destroy()
+    @grepView = null
 
   createView: ->
     unless @grepView

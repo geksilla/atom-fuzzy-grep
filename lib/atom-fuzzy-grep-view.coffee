@@ -6,8 +6,8 @@ Runner = require './runner'
 
 module.exports =
 class GrepView extends SelectListView
-  process: null
   minFilterLength: null
+  runner: null
 
   initialize: ->
     super
@@ -15,7 +15,9 @@ class GrepView extends SelectListView
       @grepProject()
 
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
-    @addClass 'atom-fuzzy-grep-list'
+    window.myCoolPanel = @panel
+    @addClass 'atom-fuzzy-grep'
+    @runner = new Runner
     atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', =>
       @minFilterLength = atom.config.get 'atom-fuzzy-grep.minSymbolsToStartSearch'
     atom.config.observe 'atom-fuzzy-grep.maxCandidates', =>
@@ -61,8 +63,10 @@ class GrepView extends SelectListView
   grepProject: ->
     return if @minFilterLength and @filterEditorView.getText().length < @minFilterLength
     @killRunner()
-    @process = new Runner(@filterEditorView.getText(), @getProjectPath())
-    @process.run(@setItems.bind(@))
+    @runner.run(@filterEditorView.getText(), @getProjectPath(), @setItems.bind(@))
+
+  killRunner: ->
+    @runner?.destroy()
 
   getProjectPath: ->
     # TODO not sure if this a proper way
@@ -70,10 +74,8 @@ class GrepView extends SelectListView
       atom.workspace.getActiveTextEditor().buffer.file.path.startsWith item
     )[0]
 
-  killRunner: ->
-    return unless @process
-    @process.destroy()
-    @process = null
+  destroy: ->
+    @detach()
 
   toggle: ()->
     if @panel?.isVisible()
