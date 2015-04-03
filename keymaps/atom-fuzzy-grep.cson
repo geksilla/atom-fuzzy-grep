@@ -10,3 +10,6 @@
 
 'atom-workspace':
   'ctrl-alt-g': 'fuzzy-grep:toggle'
+
+'atom-text-editor.vim-mode:not(.insert-mode)':
+  ', f f': 'fuzzy-grep:toggle'

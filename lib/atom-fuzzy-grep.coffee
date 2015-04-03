@@ -22,7 +22,6 @@ module.exports =
       'fuzzy-grep:toggle': => @createView().toggle()
 
   deactivate: ->
-    console.error 'Deactivated :('
     @grepView?.destroy()
     @grepView = null
 
