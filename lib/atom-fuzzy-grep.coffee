@@ -12,7 +12,7 @@ module.exports =
       order: 1
     grepCommandString:
       type: 'string'
-      default: 'ag -i --nocolor --nogroup'
+      default: 'ag -i --nocolor --nogroup --column'
     maxCandidates:
       type: 'number'
       default: 100

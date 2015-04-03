@@ -69,10 +69,14 @@ class GrepView extends SelectListView
     @runner?.destroy()
 
   getProjectPath: ->
+    editor = atom.workspace.getActiveTextEditor()
+    if editor
     # TODO not sure if this a proper way
-    atom.project.getPaths().filter((item)->
-      atom.workspace.getActiveTextEditor().buffer.file.path.startsWith item
-    )[0]
+      atom.project.getPaths().filter((item)->
+        editor.buffer.file.path.startsWith item
+      )[0]
+    else
+      atom.project.getPaths()[0]
 
   setSelection: ->
     editor = atom.workspace.getActiveTextEditor()

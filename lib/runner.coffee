@@ -15,7 +15,9 @@ module.exports =
         @useGitGrep = atom.config.get 'atom-fuzzy-grep.detectGitProjectAndUseGitGrep'
 
     run: (@search, @rootPath, callback)->
-      @commandString = 'git grep -n -e' if @useGitGrep and @isGitRepo()
+      if @useGitGrep and @isGitRepo()
+        @commandString = 'git grep -n -e'
+        @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
       options = cwd: @rootPath
@@ -45,7 +47,7 @@ module.exports =
 
     getColumn: (content)->
       if @columnArg
-        return content.match(/^(\d+):/)[1] - 1
+        return content.match(/^(\d+):/)?[1] - 1
       # escaped characters in regexp can cause error
       # skip it for a while
       try
@@ -62,4 +64,4 @@ module.exports =
         @rootPath.startsWith item.repo?.workingDirectory
 
     detectColumnFlag: ->
-      /(ag|ack)$/.test(@commandString.split(/\s/)[0]) and @commandString.contains('--column')
+      /(ag|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
