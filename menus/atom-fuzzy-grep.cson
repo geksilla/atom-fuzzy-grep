@@ -3,7 +3,7 @@
   'atom-text-editor': [
     {
       'label': 'Fuzzy Grep Toggle'
-      'command': 'atom-fuzzy-grep:toggle'
+      'command': 'fuzzy-grep:toggle'
     }
   ]
 'menu': [

@@ -1,6 +1,6 @@
 {$$, View} = require 'space-pen'
 {SelectListView} = require 'atom-space-pen-views'
-{CompositeDisposable, BufferedProcess, Point} = require 'atom'
+{BufferedProcess, Point} = require 'atom'
 path = require 'path'
 Runner = require './runner'
 
