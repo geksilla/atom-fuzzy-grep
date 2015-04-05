@@ -4,7 +4,7 @@ module.exports =
   config:
     detectGitProjectAndUseGitGrep:
       type: 'boolean'
-      default: false
+      default: true
       order: 0
     minSymbolsToStartSearch:
       type: 'number'
