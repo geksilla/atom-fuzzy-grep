@@ -1,6 +1,6 @@
 # atom-fuzzy-grep package
 
-![demo](demo.gif)
+![demo](https://raw.githubusercontent.com/geksilla/atom-fuzzy-grep/master/demo.gif)
 
 ##Install
 
