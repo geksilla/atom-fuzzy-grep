@@ -1,7 +1,7 @@
 {
   "name": "atom-fuzzy-grep",
   "main": "./lib/atom-fuzzy-grep",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Fuzzy grep project using ag, ack, grep or git-grep",
   "repository": "https://github.com/geksilla/atom-fuzzy-grep",
   "license": "MIT",
