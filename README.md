@@ -4,7 +4,7 @@
 
 ##Install
 
-    apm install atom-fuzyy-grep
+    apm install atom-fuzzy-grep
 
 ##Usage
 
