@@ -16,7 +16,7 @@ module.exports =
 
     run: (@search, @rootPath, callback)->
       if @useGitGrep and @isGitRepo()
-        @commandString = 'git grep -n -e'
+        @commandString = 'git grep --no-color -n -e'
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
