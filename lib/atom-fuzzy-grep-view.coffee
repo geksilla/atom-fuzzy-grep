@@ -70,7 +70,7 @@ class GrepView extends SelectListView
 
   getProjectPath: ->
     editor = atom.workspace.getActiveTextEditor()
-    if editor
+    if editor && editor.buffer.file
     # TODO not sure if this a proper way
       atom.project.getPaths().filter((item)->
         editor.buffer.file.path.startsWith item
