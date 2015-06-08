@@ -28,6 +28,9 @@ class GrepView extends SelectListView
   getFilterQuery: -> ''
 
   viewForItem: ({filePath, line, content, error})->
+    if error
+      @setError error
+      return
     $$ ->
       @li class: 'two-lines', =>
         fileBasePath = path.basename filePath

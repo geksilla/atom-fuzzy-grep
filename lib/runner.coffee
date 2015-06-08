@@ -25,9 +25,8 @@ module.exports =
       stdout = (output)=>
         @parseOutput(output, callback)
       stderr = (error)->
-        callback(error: error)
-      exit = (exit)->
-        callback([]) if exit
+        callback([error: error])
+      exit = ->
       @process = new BufferedProcess({command, exit, args, stdout, stderr, options})
       @process
 
