@@ -1,4 +1,4 @@
-GrepView = require './atom-fuzzy-grep-view'
+GrepView = null
 
 module.exports =
   config:
@@ -26,6 +26,7 @@ module.exports =
     @grepView = null
 
   createView: ->
+    GrepView ?= require './atom-fuzzy-grep-view'
     unless @grepView
       @grepView = new GrepView()
     @grepView
