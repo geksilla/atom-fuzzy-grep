@@ -2,20 +2,27 @@ GrepView = null
 
 module.exports =
   config:
-    detectGitProjectAndUseGitGrep:
-      type: 'boolean'
-      default: true
-      order: 0
     minSymbolsToStartSearch:
       type: 'number'
       default: 3
+      order: 0
+    maxCandidates:
+      type: 'number'
+      default: 100
       order: 1
     grepCommandString:
       type: 'string'
       default: 'ag -i --nocolor --nogroup --column'
-    maxCandidates:
-      type: 'number'
-      default: 100
+      order: 2
+    detectGitProjectAndUseGitGrep:
+      type: 'boolean'
+      default: true
+      order: 3
+    gitGrepCommandString:
+      type: 'string'
+      default: 'git grep -i --no-color -n -e'
+      order: 4
+    
 
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
