@@ -16,7 +16,7 @@ module.exports =
 
     run: (@search, @rootPath, callback)->
       if @useGitGrep and @isGitRepo()
-        @commandString = 'git grep --no-color -n -e'
+        @commandString = atom.config.get 'atom-fuzzy-grep.gitGrepCommandString'
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
