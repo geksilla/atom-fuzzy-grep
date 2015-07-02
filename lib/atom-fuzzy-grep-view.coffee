@@ -37,7 +37,7 @@ class GrepView extends SelectListView
         @div content, class: 'secondary-line'
 
   confirmed: (item)->
-    @openFile item.filePath, item.line, item.column
+    @openFile item.fullPath, item.line, item.column
     @cancelled()
 
   openFile: (filePath, line, column)->
