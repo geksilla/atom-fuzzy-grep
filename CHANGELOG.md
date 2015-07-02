@@ -1,10 +1,16 @@
+## 0.4.0
+* Git grep command can be set with custom value. Thanks [@wackywendell](https://github.com/wackywendell)
+* Default git grep command ignore case. Thanks [@wackywendell](https://github.com/wackywendell)
+* Fixed mess result showing for big stdout.
+* Absolute file path passed during file opening.
+
 ## 0.3.0
 * Display error output from command
-* Start time improvement. Thanks @kankaristo
-* Fixed following by symlinks. Thanks @kankaristo
+* Start time improvement. Thanks [@kankaristo](https://github.com/kankaristo)
+* Fixed following by symlinks. Thanks [@kankaristo](https://github.com/kankaristo)
 
 ## 0.2.0
-* Added --no-color option for ```git grep``` command. Thanks @koba04
+* Added --no-color option for ```git grep``` command. Thanks [@koba04](https://github.com/koba04)
 * Fixed error for non git projects.
 * Fixed error for running grep command with Untitled buffer.
 
