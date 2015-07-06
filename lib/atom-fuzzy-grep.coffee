@@ -22,11 +22,15 @@ module.exports =
       type: 'string'
       default: 'git grep -i --no-color -n -e'
       order: 4
-    
+    preserveLastSearch:
+      type: 'boolean'
+      default: false
+      order: 5
 
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
-      'fuzzy-grep:toggle': => @createView().toggle()
+      'fuzzy-grep:toggle': => @createView().toggle(),
+      'fuzzy-grep:toggleLastSearch': => @createView().toggleLastSearch()
 
   deactivate: ->
     @grepView?.destroy()

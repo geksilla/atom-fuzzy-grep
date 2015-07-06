@@ -4,6 +4,10 @@
     {
       'label': 'Fuzzy Grep Toggle'
       'command': 'fuzzy-grep:toggle'
+    },
+    {
+      'label': 'Fuzzy Grep Toggle Last Search'
+      'command': 'fuzzy-grep:toggleLastSearch'
     }
   ]
 'menu': [
@@ -15,6 +19,10 @@
         {
           'label': 'Toggle'
           'command': 'fuzzy-grep:toggle'
+        },
+        {
+          'label': 'Toggle Last Search'
+          'command': 'fuzzy-grep:toggleLastSearch'
         }
       ]
     ]
