@@ -10,6 +10,15 @@
 
 Hit ```ctrl-alt-g``` or ```, f f``` in vim-mode to toggle panel.
 
+To open dialog with last searched string there is the command ```fuzzy-grep:toggleLastSearch```. You can map it in your ```keymap.cson```:
+
+```
+'atom-workspace':
+  'ctrl-alt-shift-g': 'fuzzy-grep:toggleLastSearch'
+```
+
+To always open dialog with last search string check **Preserve Last Search** in package settings.
+
 ##Configuration
 
 You can specify any command you want by **Grep Command String** option in package settings,  [ag](https://github.com/ggreer/the_silver_searcher) is used by default.

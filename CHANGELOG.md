@@ -1,3 +1,7 @@
+## 0.5.0
+* Option to activate persisting of last search string.
+* Command to run grep dialog with last search string.
+
 ## 0.4.0
 * Git grep command can be set with custom value. Thanks [@wackywendell](https://github.com/wackywendell)
 * Default git grep command ignore case. Thanks [@wackywendell](https://github.com/wackywendell)
