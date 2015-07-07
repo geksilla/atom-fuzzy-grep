@@ -85,7 +85,7 @@ class GrepView extends SelectListView
     editor = atom.workspace.getActiveTextEditor()
     return atom.project.getPaths()[0] || homeDir unless editor
     if editor.getPath()
-      atom.project.relativizePath(editor.getPath())[0]
+      atom.project.relativizePath(editor.getPath())[0] || path.dirname(editor.getPath())
     else
       atom.project.getPaths()[0] || homeDir
 
