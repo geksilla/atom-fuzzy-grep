@@ -7,7 +7,10 @@ escapeStringRegexp = require 'escape-string-regexp'
 
 module.exports =
 class GrepView extends SelectListView
-  minFilterLength: null
+  preserveLastSearch: false
+  maxItems: 100
+  minFilterLength: 3
+  showFullPath: false
   runner: null
   lastSearch: ''
 
@@ -30,19 +33,22 @@ class GrepView extends SelectListView
       @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
     atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', =>
       @escapeSelectedText = atom.config.get('atom-fuzzy-grep.escapeSelectedText') is true
+    atom.config.observe 'atom-fuzzy-grep.showFullPath', =>
+      @showFullPath = atom.config.get 'atom-fuzzy-grep.showFullPath'
 
   getFilterKey: ->
 
   getFilterQuery: -> ''
 
   viewForItem: ({filePath, line, content, error})->
+    that = @
     if error
       @setError error
       return
     $$ ->
       @li class: 'two-lines', =>
-        fileBasePath = path.basename filePath
-        @div "#{fileBasePath}:#{line+1}", class: 'primary-line file icon icon-file-text', 'data-name': fileBasePath
+        displayedPath = if that.showFullPath then filePath else path.basename filePath
+        @div "#{displayedPath}:#{line+1}", class: 'primary-line file icon icon-file-text', 'data-name': displayedPath
         @div content, class: 'secondary-line'
 
   confirmed: (item)->
