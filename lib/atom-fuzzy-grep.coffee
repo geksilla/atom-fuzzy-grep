@@ -26,6 +26,12 @@ module.exports =
       type: 'boolean'
       default: false
       order: 5
+    grepCommandFindAndReplace:
+      type: 'array'
+      default: []
+      items:
+        type: 'string'
+        default: ''
 
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
