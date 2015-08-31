@@ -27,6 +27,8 @@ class GrepView extends SelectListView
       @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
     atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', =>
       @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
+    atom.config.observe 'atom-fuzzy-grep.grepCommandFindAndReplace', =>
+      @grepCommandFindAndReplace = atom.config.get 'atom-fuzzy-grep.grepCommandFindAndReplace'
 
   getFilterKey: ->
 
@@ -89,7 +91,15 @@ class GrepView extends SelectListView
   setSelection: ->
     editor = atom.workspace.getActiveTextEditor()
     if editor?.getSelectedText()
-      @filterEditorView.setText(editor.getSelectedText())
+      text = editor.getSelectedText()
+      if @grepCommandFindAndReplace
+        len = @grepCommandFindAndReplace.length
+        for e, i in @grepCommandFindAndReplace by 2
+          if len > i+1
+            findstr = @grepCommandFindAndReplace[i]
+            replacestr = @grepCommandFindAndReplace[i+1]
+            text = text.replace(findstr, replacestr)
+      @filterEditorView.setText(text)
 
   destroy: ->
     @detach()
