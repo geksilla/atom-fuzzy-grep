@@ -1,3 +1,8 @@
+##0.6.0
+* When opened file out of the project path use directory where it located.
+* Prevent exception when grep outisde of a project. Thanks [@khyo](https://github.com/khyo)
+* Add 'Escape Selected Text' config option. Thanks [@khyo](https://github.com/khyo)
+
 ## 0.5.0
 * Option to activate persisting of last search string.
 * Command to run grep dialog with last search string.
