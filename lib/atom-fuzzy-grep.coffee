@@ -26,6 +26,10 @@ module.exports =
       type: 'boolean'
       default: false
       order: 5
+    escapeSelectedText:
+      type: 'boolean'
+      default: false
+      order: 6
 
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
