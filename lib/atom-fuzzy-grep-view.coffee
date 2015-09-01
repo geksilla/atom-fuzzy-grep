@@ -3,6 +3,7 @@
 {BufferedProcess, Point} = require 'atom'
 path = require 'path'
 Runner = require './runner'
+escapeStringRegexp = require 'escape-string-regexp'
 
 module.exports =
 class GrepView extends SelectListView
@@ -27,6 +28,8 @@ class GrepView extends SelectListView
       @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
     atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', =>
       @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
+    atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', =>
+      @escapeSelectedText = atom.config.get('atom-fuzzy-grep.escapeSelectedText') is true
 
   getFilterKey: ->
 
@@ -89,7 +92,9 @@ class GrepView extends SelectListView
   setSelection: ->
     editor = atom.workspace.getActiveTextEditor()
     if editor?.getSelectedText()
-      @filterEditorView.setText(editor.getSelectedText())
+      text = editor.getSelectedText()
+      @filterEditorView.setText(
+        if @escapeSelectedText then escapeStringRegexp(text) else text)
 
   destroy: ->
     @detach()
