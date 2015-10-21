@@ -1,4 +1,9 @@
-##0.6.0
+## 0.7.0
+* Added file filter mode for files found.
+* Add coffeelint config file.
+* Add option to display full path to file.
+
+## 0.6.0
 * When opened file out of the project path use directory where it located.
 * Prevent exception when grep outisde of a project. Thanks [@khyo](https://github.com/khyo)
 * Add 'Escape Selected Text' config option. Thanks [@khyo](https://github.com/khyo)
