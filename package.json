@@ -1,7 +1,7 @@
 {
   "name": "atom-fuzzy-grep",
   "main": "./lib/atom-fuzzy-grep",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Fuzzy grep project using ag, ack, grep or git-grep",
   "activationCommands": {
     "atom-workspace": [
