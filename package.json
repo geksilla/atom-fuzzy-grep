@@ -17,6 +17,7 @@
   "dependencies": {
     "space-pen": "^5.1.1",
     "atom-space-pen-views": "^2.0.0",
-    "escape-string-regexp": "^1.0.3"
+    "escape-string-regexp": "^1.0.3",
+    "fuzzaldrin": "^2.1.0"
   }
 }

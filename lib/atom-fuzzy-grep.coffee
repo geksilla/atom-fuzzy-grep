@@ -38,7 +38,8 @@ module.exports =
   activate: ->
     @editorSubscription = atom.commands.add 'atom-workspace',
       'fuzzy-grep:toggle': => @createView().toggle(),
-      'fuzzy-grep:toggleLastSearch': => @createView().toggleLastSearch()
+      'fuzzy-grep:toggleLastSearch': => @createView().toggleLastSearch(),
+      'fuzzy-grep:toggleFileFilter': => @grepView.toggleFileFilter()
 
   deactivate: ->
     @grepView?.destroy()

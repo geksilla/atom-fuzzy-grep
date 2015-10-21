@@ -4,6 +4,7 @@
 path = require 'path'
 Runner = require './runner'
 escapeStringRegexp = require 'escape-string-regexp'
+fuzzyFilter = null
 
 module.exports =
 class GrepView extends SelectListView
@@ -13,11 +14,13 @@ class GrepView extends SelectListView
   showFullPath: false
   runner: null
   lastSearch: ''
+  isFileFiltering: false
 
   initialize: ->
     super
     @filterEditorView.getModel().getBuffer().onDidChange =>
-      @grepProject()
+      unless @isFileFiltering
+        @grepProject()
 
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
@@ -37,8 +40,10 @@ class GrepView extends SelectListView
       @showFullPath = atom.config.get 'atom-fuzzy-grep.showFullPath'
 
   getFilterKey: ->
+    if @isFileFiltering then 'filePath' else ''
 
-  getFilterQuery: -> ''
+  getFilterQuery: ->
+    if @isFileFiltering then @filterEditorView.getText() else ''
 
   viewForItem: ({filePath, line, content, error})->
     that = @
@@ -75,6 +80,7 @@ class GrepView extends SelectListView
 
   cancelled: ->
     @items = []
+    @isFileFiltering = false
     @panel.hide()
     @killRunner()
 
@@ -118,3 +124,12 @@ class GrepView extends SelectListView
   toggleLastSearch: ->
     @toggle()
     @filterEditorView.setText(@lastSearch || '')
+
+  toggleFileFilter: ->
+    @isFileFiltering = !@isFileFiltering
+    if @isFileFiltering
+      @tmpSearchString = @filterEditorView.getText()
+      @filterEditorView.setText('')
+    else
+      @filterEditorView.setText(@tmpSearchString)
+      @tmpSearchString = ''
