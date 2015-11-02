@@ -33,6 +33,10 @@ You can specify any command you want by **Grep Command String** option in packag
 
 If you wan to setup another one instead of **ag** here few examples:
 
+### [pt](https://github.com/monochromegane/the_platinum_searcher)
+
+    pt -i --nocolor --nogroup --column
+
 ### [ack](https://github.com/petdance/ack2)
 
     ack -i --nocolor --nogroup --column
