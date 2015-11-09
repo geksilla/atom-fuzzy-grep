@@ -69,4 +69,4 @@ module.exports =
         @rootPath?.startsWith(item.repo?.workingDirectory) if item
 
     detectColumnFlag: ->
-      /(ag|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
+      /(ag|pt|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
