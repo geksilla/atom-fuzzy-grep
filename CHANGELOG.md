@@ -1,3 +1,6 @@
+## 0.8.0
+* Support the Platinum Searcher. Thanks [@xHN35RQ](https://github.com/xHN35RQ)
+  
 ## 0.7.0
 * Added file filter mode for files found.
 * Add coffeelint config file.
