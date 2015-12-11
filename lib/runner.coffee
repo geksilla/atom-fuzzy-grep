@@ -21,7 +21,7 @@ module.exports =
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
-      options = cwd: @rootPath
+      options = cwd: @rootPath, stdio: ['ignore', 'pipe', 'pipe']
 
       stdout = (output)=>
         if listItems.length > atom.config.get('atom-fuzzy-grep.maxCandidates')
