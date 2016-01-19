@@ -31,7 +31,8 @@ module.exports =
         callback(listItems)
       stderr = (error)->
         callback([error: error])
-      exit = ->
+      exit = (code)->
+        callback([]) if code == 1
       @process = new BufferedProcess({command, exit, args, stdout, stderr, options})
       @process
 
