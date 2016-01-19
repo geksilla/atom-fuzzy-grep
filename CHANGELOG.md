@@ -1,3 +1,6 @@
+## 0.10.0
+* Supports no result. Thanks [@aki77](https://github.com/aki77)
+
 ## 0.9.0
 * Fixed, atom-fuzzy-grep never finds anything on Windows. Thanks [@mykolav](https://github.com/mykolav)
 
