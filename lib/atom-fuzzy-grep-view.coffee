@@ -64,8 +64,9 @@ class GrepView extends SelectListView
   openFile: (filePath, line, column)->
     return unless filePath
     atom.workspace.open(filePath, {initialLine: line, initialColumn: column}).then((editor) ->
-      {top} = editor.pixelPositionForBufferPosition(editor.getCursorBufferPosition())
-      editor.setScrollTop(top - editor.getHeight() / 2)
+      editorElement = atom.views.getView(editor)
+      {top} = editorElement.pixelPositionForBufferPosition(editor.getCursorBufferPosition())
+      editorElement.setScrollTop(top - editorElement.getHeight() / 2)
     )
 
   cancelled: ->
