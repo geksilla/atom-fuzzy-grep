@@ -3,6 +3,15 @@
   "main": "./lib/atom-fuzzy-grep",
   "version": "0.11.0",
   "description": "Fuzzy grep project using ag, pt, ack, grep or git-grep",
+  "keywords": [
+    "fuzzy",
+    "grep",
+    "ag",
+    "pt",
+    "productivity",
+    "search",
+    "find"
+  ],
   "activationCommands": {
     "atom-workspace": [
       "fuzzy-grep:toggle",

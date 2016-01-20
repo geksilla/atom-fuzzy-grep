@@ -6,6 +6,8 @@
 
     apm install atom-fuzzy-grep
 
+Or search via __Settings View -> Install__
+
 ## Usage
 
 Hit ```ctrl-alt-g``` or ```, f f``` in vim-mode to toggle panel.
@@ -52,6 +54,37 @@ If you wan to setup another one instead of **ag** here few examples:
 ```git grep``` used by default for git projects if you don't want to use it uncheck **Detect Git Project And Use Git Grep** option in package settings.
 
 Check package settings for more info.
+
+## Caveats
+
+* Search folder detects on project path from active text editor.
+* When no editors opened or `Untitled` first project root path used.
+* When you have opened several projects and want to search through it you need to open any file from this project and start search dialog.
+* When active item not in project `$HOME` directory used as root dir.
+* When no projects opened `$HOME` directory used as root dir.
+
+## Commands
+
+Name                            | Selector         | Key Map               | Description
+--------------------------------|------------------|-----------------------|----------------------------------------------------------------------
+__fuzzy-grep:toggle__           | `atom-workspace` | <kbd>ctrl-alt-g</kbd> | Open search dialog start typing and select item
+__fuzzy-grep:toggleLastSearch__ | `atom-workspace` | none                  | Open dialog with last search string
+__fuzzy-grep:toggleFileFilter__ | `atom-workspace` | <kdb>ctrl-f</kbd>     | When search dialog opened toggle file name filtering on found results
+
+
+## Configs
+
+Name                                              | Default                              | Type      | Description
+--------------------------------------------------|--------------------------------------|-----------|---------------------------------------------------------------------
+__atom-fuzzy-grep.minSymbolsToStartSearch__       | 3                                    | _number_  | Start search after N symbol
+__atom-fuzzy-grep.maxCandidates__                 | 100                                  | _number_  | Maximum count of displayed items
+__atom-fuzzy-grep.grepCommandString__             | 'ag -i --nocolor --nogroup --column' | _string_  | Grep command
+__atom-fuzzy-grep.detectGitProjectAndUseGitGrep__ | false                                | _boolean_ | Always use `git grep` when opened project is a git repository
+__atom-fuzzy-grep.gitGrepCommandString__          | 'git grep -i --no-color -n -e'       | _string_  | `git grep` command used when `detectGitProjectAndUseGitGrep` is true
+__atom-fuzzy-grep.preserveLastSearch__            | false                                | _boolean_ | Use last search string as input for search dialog
+__atom-fuzzy-grep.escapeSelectedText__            | false                                | _boolean_ | Escape special characters when dialog opened with selected text
+__atom-fuzzy-grep.showFullPath__                  | false                                | _boolean_ | Show full file path instead of file name
+
 
 ## Contributing
 
