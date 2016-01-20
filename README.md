@@ -67,9 +67,9 @@ Check package settings for more info.
 
 Name                            | Selector         | Key Map               | Description
 --------------------------------|------------------|-----------------------|----------------------------------------------------------------------
-__fuzzy-grep:toggle__           | `atom-workspace` | <kbd>ctrl-alt-g</kbd> | Open search dialog start typing and select item
+__fuzzy-grep:toggle__           | `atom-workspace` | 'ctrl-alt-g' | Open search dialog start typing and select item
 __fuzzy-grep:toggleLastSearch__ | `atom-workspace` | none                  | Open dialog with last search string
-__fuzzy-grep:toggleFileFilter__ | `atom-workspace` | <kdb>ctrl-f</kbd>     | When search dialog opened toggle file name filtering on found results
+__fuzzy-grep:toggleFileFilter__ | `atom-workspace .atom-fuzzy-grep` | 'ctrl-f'     | When search dialog opened toggle file name filtering on found results
 
 
 ## Configs
