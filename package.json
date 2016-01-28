@@ -52,6 +52,11 @@
       "type": "boolean",
       "default": false,
       "order": 7
+    },
+    "inputThrottle": {
+      "type": "integer",
+      "default": 50,
+      "order": 8
     }
   },
   "activationCommands": {

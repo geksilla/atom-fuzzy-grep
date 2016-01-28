@@ -18,26 +18,18 @@ class GrepView extends SelectListView
 
   initialize: ->
     super
-    @filterEditorView.getModel().getBuffer().onDidChange =>
-      unless @isFileFiltering
-        @grepProject()
-
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
     @setupConfigs()
 
   setupConfigs: ->
-    atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', =>
-      @minFilterLength = atom.config.get 'atom-fuzzy-grep.minSymbolsToStartSearch'
-    atom.config.observe 'atom-fuzzy-grep.maxCandidates', =>
-      @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
-    atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', =>
-      @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
-    atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', =>
-      @escapeSelectedText = atom.config.get('atom-fuzzy-grep.escapeSelectedText') is true
-    atom.config.observe 'atom-fuzzy-grep.showFullPath', =>
-      @showFullPath = atom.config.get 'atom-fuzzy-grep.showFullPath'
+    atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', (@minFilterLength) =>
+    atom.config.observe 'atom-fuzzy-grep.maxCandidates', (@maxItems) =>
+    atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', (@preserveLastSearch) =>
+    atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', (@escapeSelectedText) =>
+    atom.config.observe 'atom-fuzzy-grep.showFullPath', (@showFullPath) =>
+    atom.config.observe 'atom-fuzzy-grep.inputThrottle', (@inputThrottle) =>
 
   getFilterKey: ->
     if @isFileFiltering then 'filePath' else ''
@@ -124,3 +116,10 @@ class GrepView extends SelectListView
     else
       @filterEditorView.setText(@tmpSearchString)
       @tmpSearchString = ''
+
+  schedulePopulateList: ->
+    clearTimeout(@scheduleTimeout)
+    filterMethod = if @isFileFiltering then @populateList else @grepProject
+    populateCallback = =>
+      filterMethod.bind(@)() if @isOnDom()
+    @scheduleTimeout = setTimeout(populateCallback,  @inputThrottle)
