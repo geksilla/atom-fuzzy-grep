@@ -1,6 +1,6 @@
 {$$, View} = require 'space-pen'
 {SelectListView} = require 'atom-space-pen-views'
-{BufferedProcess, Point} = require 'atom'
+{BufferedProcess, CompositeDisposable} = require 'atom'
 path = require 'path'
 Runner = require './runner'
 escapeStringRegexp = require 'escape-string-regexp'
@@ -18,26 +18,20 @@ class GrepView extends SelectListView
 
   initialize: ->
     super
-    @filterEditorView.getModel().getBuffer().onDidChange =>
-      unless @isFileFiltering
-        @grepProject()
-
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add(@filterEditorView.element, 'fuzzy-grep:toggleFileFilter', @toggleFileFilter)
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
     @setupConfigs()
 
   setupConfigs: ->
-    atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', =>
-      @minFilterLength = atom.config.get 'atom-fuzzy-grep.minSymbolsToStartSearch'
-    atom.config.observe 'atom-fuzzy-grep.maxCandidates', =>
-      @maxItems = atom.config.get 'atom-fuzzy-grep.maxCandidates'
-    atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', =>
-      @preserveLastSearch = atom.config.get('atom-fuzzy-grep.preserveLastSearch') is true
-    atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', =>
-      @escapeSelectedText = atom.config.get('atom-fuzzy-grep.escapeSelectedText') is true
-    atom.config.observe 'atom-fuzzy-grep.showFullPath', =>
-      @showFullPath = atom.config.get 'atom-fuzzy-grep.showFullPath'
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', (@minFilterLength) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.maxCandidates', (@maxItems) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', (@preserveLastSearch) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', (@escapeSelectedText) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.showFullPath', (@showFullPath) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.inputThrottle', (@inputThrottle) =>
 
   getFilterKey: ->
     if @isFileFiltering then 'filePath' else ''
@@ -100,6 +94,8 @@ class GrepView extends SelectListView
         if @escapeSelectedText then escapeStringRegexp(text) else text)
 
   destroy: ->
+    @subscriptions?.dispose()
+    @subscriptions = null
     @detach()
 
   toggle: ->
@@ -116,7 +112,7 @@ class GrepView extends SelectListView
     @toggle()
     @filterEditorView.setText(@lastSearch || '')
 
-  toggleFileFilter: ->
+  toggleFileFilter: =>
     @isFileFiltering = !@isFileFiltering
     if @isFileFiltering
       @tmpSearchString = @filterEditorView.getText()
@@ -124,3 +120,10 @@ class GrepView extends SelectListView
     else
       @filterEditorView.setText(@tmpSearchString)
       @tmpSearchString = ''
+
+  schedulePopulateList: ->
+    clearTimeout(@scheduleTimeout)
+    filterMethod = if @isFileFiltering then @populateList else @grepProject
+    populateCallback = =>
+      filterMethod.bind(@)() if @isOnDom()
+    @scheduleTimeout = setTimeout(populateCallback,  @inputThrottle)

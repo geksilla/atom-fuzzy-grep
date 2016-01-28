@@ -84,6 +84,7 @@ __atom-fuzzy-grep.gitGrepCommandString__          | 'git grep -i --no-color -n -
 __atom-fuzzy-grep.preserveLastSearch__            | false                                | _boolean_ | Use last search string as input for search dialog
 __atom-fuzzy-grep.escapeSelectedText__            | false                                | _boolean_ | Escape special characters when dialog opened with selected text
 __atom-fuzzy-grep.showFullPath__                  | false                                | _boolean_ | Show full file path instead of file name
+__atom-fuzzy-grep.inputThrottle__                 | 50                                   | _integer_ | Input throttle
 
 
 ## Contributing

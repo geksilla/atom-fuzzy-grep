@@ -11,7 +11,7 @@
 'atom-workspace':
   'ctrl-alt-g': 'fuzzy-grep:toggle'
 
-'atom-workspace .atom-fuzzy-grep':
+'atom-workspace .atom-fuzzy-grep atom-text-editor':
   'ctrl-f': 'fuzzy-grep:toggleFileFilter'
 
 'atom-text-editor.vim-mode:not(.insert-mode)':
