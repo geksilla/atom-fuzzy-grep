@@ -1,3 +1,6 @@
+## 0.12.0
+* Added inputThrottle settings. Thanks [@aki77](https://github.com/aki77)
+
 ## 0.11.0
 * Fix deprecated calls. Thanks [@aki77](https://github.com/aki77)
 * Use Workspace::open options. Thanks [@aki77](https://github.com/aki77)
