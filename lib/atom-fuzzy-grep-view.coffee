@@ -1,6 +1,6 @@
 {$$, View} = require 'space-pen'
 {SelectListView} = require 'atom-space-pen-views'
-{BufferedProcess, Point} = require 'atom'
+{BufferedProcess, CompositeDisposable} = require 'atom'
 path = require 'path'
 Runner = require './runner'
 escapeStringRegexp = require 'escape-string-regexp'
@@ -18,19 +18,20 @@ class GrepView extends SelectListView
 
   initialize: ->
     super
-    @commandSubscription = atom.commands.add(@filterEditorView.element, 'fuzzy-grep:toggleFileFilter', @toggleFileFilter)
+    @subscriptions = new CompositeDisposable
+    @subscriptions.add atom.commands.add(@filterEditorView.element, 'fuzzy-grep:toggleFileFilter', @toggleFileFilter)
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
     @setupConfigs()
 
   setupConfigs: ->
-    atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', (@minFilterLength) =>
-    atom.config.observe 'atom-fuzzy-grep.maxCandidates', (@maxItems) =>
-    atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', (@preserveLastSearch) =>
-    atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', (@escapeSelectedText) =>
-    atom.config.observe 'atom-fuzzy-grep.showFullPath', (@showFullPath) =>
-    atom.config.observe 'atom-fuzzy-grep.inputThrottle', (@inputThrottle) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.minSymbolsToStartSearch', (@minFilterLength) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.maxCandidates', (@maxItems) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.preserveLastSearch', (@preserveLastSearch) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', (@escapeSelectedText) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.showFullPath', (@showFullPath) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.inputThrottle', (@inputThrottle) =>
 
   getFilterKey: ->
     if @isFileFiltering then 'filePath' else ''
@@ -93,8 +94,8 @@ class GrepView extends SelectListView
         if @escapeSelectedText then escapeStringRegexp(text) else text)
 
   destroy: ->
-    @commandSubscription?.dispose()
-    @commandSubscription = null
+    @subscriptions?.dispose()
+    @subscriptions = null
     @detach()
 
   toggle: ->
