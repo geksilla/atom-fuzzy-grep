@@ -18,6 +18,7 @@ class GrepView extends SelectListView
 
   initialize: ->
     super
+    @commandSubscription = atom.commands.add(@filterEditorView.element, 'fuzzy-grep:toggleFileFilter', @toggleFileFilter)
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
@@ -92,6 +93,8 @@ class GrepView extends SelectListView
         if @escapeSelectedText then escapeStringRegexp(text) else text)
 
   destroy: ->
+    @commandSubscription?.dispose()
+    @commandSubscription = null
     @detach()
 
   toggle: ->
@@ -108,7 +111,7 @@ class GrepView extends SelectListView
     @toggle()
     @filterEditorView.setText(@lastSearch || '')
 
-  toggleFileFilter: ->
+  toggleFileFilter: =>
     @isFileFiltering = !@isFileFiltering
     if @isFileFiltering
       @tmpSearchString = @filterEditorView.getText()
