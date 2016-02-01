@@ -33,7 +33,7 @@ To change this keybinding add following lines to your *keymaps.cson*:
 
 You can specify any command you want by **Grep Command String** option in package settings,  [ag](https://github.com/ggreer/the_silver_searcher) is used by default.
 
-If you wan to setup another one instead of **ag** here few examples:
+If you want to setup another one instead of **ag** here few examples:
 
 ### [pt](https://github.com/monochromegane/the_platinum_searcher)
 
@@ -60,8 +60,8 @@ Check package settings for more info.
 * Search folder detects on project path from active text editor.
 * When no editors opened or `Untitled` first project root path used.
 * When you have opened several projects and want to search through it you need to open any file from this project and start search dialog.
-* When active item not in project `$HOME` directory used as root dir.
-* When no projects opened `$HOME` directory used as root dir.
+* When active item not in project home directory used as root dir.
+* When no projects opened home directory used as root dir.
 
 ## Commands
 

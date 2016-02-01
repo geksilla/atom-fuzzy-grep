@@ -81,7 +81,7 @@ class GrepView extends SelectListView
     @runner?.destroy()
 
   getProjectPath: ->
-    homeDir = process.env.HOME
+    homeDir = require('os').homedir()
     editor = atom.workspace.getActiveTextEditor()
     return atom.project.getPaths()[0] || homeDir unless editor
     if editor.getPath()
