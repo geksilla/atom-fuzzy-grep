@@ -49,7 +49,7 @@ If you wan to setup another one instead of **ag** here few examples:
 
 ### git grep
 
-    git grep -n -e
+    git grep -n -E
 
 ```git grep``` used by default for git projects if you don't want to use it uncheck **Detect Git Project And Use Git Grep** option in package settings.
 
@@ -70,6 +70,8 @@ Name                            | Selector         | Key Map               | Des
 __fuzzy-grep:toggle__           | `atom-workspace` | 'ctrl-alt-g' | Open search dialog start typing and select item
 __fuzzy-grep:toggleLastSearch__ | `atom-workspace` | none                  | Open dialog with last search string
 __fuzzy-grep:toggleFileFilter__ | `atom-workspace .atom-fuzzy-grep` | 'ctrl-f'     | When search dialog opened toggle file name filtering on found results
+__fuzzy-grep:pasteEscaped__ | `body.platform-linux atom-workspace .atom-fuzzy-grep atom-text-editor, body.platform-win32 atom-workspace .atom-fuzzy-grep atom-text-editor` | 'ctrl-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
+__fuzzy-grep:pasteEscaped__ | `body.platform-darwin atom-workspace .atom-fuzzy-grep atom-text-editor` | 'cmd-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
 
 
 ## Configs
@@ -80,11 +82,12 @@ __atom-fuzzy-grep.minSymbolsToStartSearch__       | 3                           
 __atom-fuzzy-grep.maxCandidates__                 | 100                                  | _number_  | Maximum count of displayed items
 __atom-fuzzy-grep.grepCommandString__             | 'ag -i --nocolor --nogroup --column' | _string_  | Grep command
 __atom-fuzzy-grep.detectGitProjectAndUseGitGrep__ | false                                | _boolean_ | Always use `git grep` when opened project is a git repository
-__atom-fuzzy-grep.gitGrepCommandString__          | 'git grep -i --no-color -n -e'       | _string_  | `git grep` command used when `detectGitProjectAndUseGitGrep` is true
+__atom-fuzzy-grep.gitGrepCommandString__          | 'git grep -i --no-color -n -E'       | _string_  | `git grep` command used when `detectGitProjectAndUseGitGrep` is true
 __atom-fuzzy-grep.preserveLastSearch__            | false                                | _boolean_ | Use last search string as input for search dialog
-__atom-fuzzy-grep.escapeSelectedText__            | false                                | _boolean_ | Escape special characters when dialog opened with selected text
+__atom-fuzzy-grep.escapeSelectedText__            | true                                | _boolean_ | Escape special characters when dialog opened with selected text
 __atom-fuzzy-grep.showFullPath__                  | false                                | _boolean_ | Show full file path instead of file name
 __atom-fuzzy-grep.inputThrottle__                 | 50                                   | _integer_ | Input throttle
+__atom-fuzzy-grep.escapeOnPaste__                 | true                                   | _boolean_ | Escape pasted text
 
 
 ## Contributing

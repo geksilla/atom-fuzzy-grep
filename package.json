@@ -35,7 +35,7 @@
     },
     "gitGrepCommandString": {
       "type": "string",
-      "default": "git grep -i --no-color -n -e",
+      "default": "git grep -i --no-color -n -E",
       "order": 4
     },
     "preserveLastSearch": {
@@ -45,7 +45,7 @@
     },
     "escapeSelectedText": {
       "type": "boolean",
-      "default": false,
+      "default": true,
       "order": 6
     },
     "showFullPath": {
@@ -57,6 +57,11 @@
       "type": "integer",
       "default": 50,
       "order": 8
+    },
+    "escapeOnPaste": {
+      "type": "boolean",
+      "default": true,
+      "order": 9
     }
   },
   "activationCommands": {

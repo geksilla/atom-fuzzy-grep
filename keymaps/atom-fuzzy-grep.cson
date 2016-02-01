@@ -11,6 +11,12 @@
 'atom-workspace':
   'ctrl-alt-g': 'fuzzy-grep:toggle'
 
+'body.platform-linux atom-workspace .atom-fuzzy-grep atom-text-editor, body.platform-win32 atom-workspace .atom-fuzzy-grep atom-text-editor':
+  'ctrl-v': 'fuzzy-grep:pasteEscaped'
+
+'body.platform-darwin atom-workspace .atom-fuzzy-grep atom-text-editor':
+  'cmd-v': 'fuzzy-grep:pasteEscaped'
+
 'atom-workspace .atom-fuzzy-grep atom-text-editor':
   'ctrl-f': 'fuzzy-grep:toggleFileFilter'
 

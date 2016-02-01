@@ -15,11 +15,13 @@ class GrepView extends SelectListView
   runner: null
   lastSearch: ''
   isFileFiltering: false
+  escapeOnPaste: true
 
   initialize: ->
     super
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add(@filterEditorView.element, 'fuzzy-grep:toggleFileFilter', @toggleFileFilter)
+    @subscriptions.add atom.commands.add(@filterEditorView.element, 'fuzzy-grep:pasteEscaped', @pasteEscaped)
     @panel = atom.workspace.addModalPanel(item: this, visible: false)
     @addClass 'atom-fuzzy-grep'
     @runner = new Runner
@@ -32,6 +34,7 @@ class GrepView extends SelectListView
     @subscriptions.add atom.config.observe 'atom-fuzzy-grep.escapeSelectedText', (@escapeSelectedText) =>
     @subscriptions.add atom.config.observe 'atom-fuzzy-grep.showFullPath', (@showFullPath) =>
     @subscriptions.add atom.config.observe 'atom-fuzzy-grep.inputThrottle', (@inputThrottle) =>
+    @subscriptions.add atom.config.observe 'atom-fuzzy-grep.escapeOnPaste', (@escapeOnPaste) =>
 
   getFilterKey: ->
     if @isFileFiltering then 'filePath' else ''
@@ -89,9 +92,12 @@ class GrepView extends SelectListView
   setSelection: ->
     editor = atom.workspace.getActiveTextEditor()
     if editor?.getSelectedText()
-      text = editor.getSelectedText()
-      @filterEditorView.setText(
-        if @escapeSelectedText then escapeStringRegexp(text) else text)
+      @filterEditorView.setText editor.getSelectedText()
+      @escapeFieldText() if @escapeSelectedText
+
+  escapeFieldText: =>
+    escapedString = escapeStringRegexp @filterEditorView.getText()
+    @filterEditorView.setText escapedString
 
   destroy: ->
     @subscriptions?.dispose()
@@ -120,6 +126,11 @@ class GrepView extends SelectListView
     else
       @filterEditorView.setText(@tmpSearchString)
       @tmpSearchString = ''
+
+  pasteEscaped: (e)=>
+    {target} = e
+    atom.commands.dispatch target, "core:paste"
+    @escapeFieldText() if @escapeOnPaste
 
   schedulePopulateList: ->
     clearTimeout(@scheduleTimeout)
