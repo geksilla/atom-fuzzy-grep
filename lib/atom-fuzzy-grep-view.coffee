@@ -138,3 +138,6 @@ class GrepView extends SelectListView
     populateCallback = =>
       filterMethod.bind(@)() if @isOnDom()
     @scheduleTimeout = setTimeout(populateCallback,  @inputThrottle)
+
+  setEnv: (env)->
+    @runner?.setEnv env

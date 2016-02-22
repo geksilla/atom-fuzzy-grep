@@ -6,6 +6,7 @@ module.exports =
     process: null
     useGitGrep: false
     columnArg: false
+    env: process.env
 
     constructor: ()->
       atom.config.observe 'atom-fuzzy-grep.grepCommandString', =>
@@ -21,7 +22,7 @@ module.exports =
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
       args.push @search
-      options = cwd: @rootPath, stdio: ['ignore', 'pipe', 'pipe']
+      options = cwd: @rootPath, stdio: ['ignore', 'pipe', 'pipe'], env: @env
 
       stdout = (output)=>
         if listItems.length > atom.config.get('atom-fuzzy-grep.maxCandidates')
@@ -71,3 +72,5 @@ module.exports =
 
     detectColumnFlag: ->
       /(ag|pt|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
+
+    setEnv: (@env)->

@@ -62,6 +62,12 @@
       "type": "boolean",
       "default": true,
       "order": 9
+    },
+    "fixEnv": {
+      "type": "boolean",
+      "description": "Fix env on OS X when running not from terminal.",
+      "default": true,
+      "order": 10
     }
   },
   "activationCommands": {
@@ -80,5 +86,12 @@
     "atom-space-pen-views": "^2.0.0",
     "escape-string-regexp": "^1.0.3",
     "fuzzaldrin": "^2.1.0"
+  },
+  "consumedServices": {
+    "environment": {
+      "versions": {
+        "1.0.0": "consumeEnvironment"
+      }
+    }
   }
 }
