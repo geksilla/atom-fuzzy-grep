@@ -29,6 +29,15 @@ To change this keybinding add following lines to your *keymaps.cson*:
   '<your_keys_here>': 'fuzzy-grep:toggleFileFilter'
 ```
 
+### OS X Users
+
+You can hit issues with `$PATH` variable when atom __not launched__ from terminal.
+If you like to open atom via spotlight, alfred, etc. install [environment](https://atom.io/packages/environment) package.
+
+So it is highly recommended to have [environment](https://atom.io/packages/environment) package installed!
+
+For more info see [this thread](https://github.com/geksilla/atom-fuzzy-grep/issues/16).
+
 ## Configuration
 
 You can specify any command you want by **Grep Command String** option in package settings,  [ag](https://github.com/ggreer/the_silver_searcher) is used by default.
@@ -77,17 +86,18 @@ __fuzzy-grep:pasteEscaped__ | `body.platform-darwin atom-workspace .atom-fuzzy-g
 ## Configs
 
 Name                                              | Default                              | Type      | Description
---------------------------------------------------|--------------------------------------|-----------|---------------------------------------------------------------------
+--------------------------------------------------|--------------------------------------|-----------|-----------------------------------------------------------------------------------
 __atom-fuzzy-grep.minSymbolsToStartSearch__       | 3                                    | _number_  | Start search after N symbol
 __atom-fuzzy-grep.maxCandidates__                 | 100                                  | _number_  | Maximum count of displayed items
 __atom-fuzzy-grep.grepCommandString__             | 'ag -i --nocolor --nogroup --column' | _string_  | Grep command
 __atom-fuzzy-grep.detectGitProjectAndUseGitGrep__ | false                                | _boolean_ | Always use `git grep` when opened project is a git repository
 __atom-fuzzy-grep.gitGrepCommandString__          | 'git grep -i --no-color -n -E'       | _string_  | `git grep` command used when `detectGitProjectAndUseGitGrep` is true
 __atom-fuzzy-grep.preserveLastSearch__            | false                                | _boolean_ | Use last search string as input for search dialog
-__atom-fuzzy-grep.escapeSelectedText__            | true                                | _boolean_ | Escape special characters when dialog opened with selected text
+__atom-fuzzy-grep.escapeSelectedText__            | true                                 | _boolean_ | Escape special characters when dialog opened with selected text
 __atom-fuzzy-grep.showFullPath__                  | false                                | _boolean_ | Show full file path instead of file name
 __atom-fuzzy-grep.inputThrottle__                 | 50                                   | _integer_ | Input throttle
-__atom-fuzzy-grep.escapeOnPaste__                 | true                                   | _boolean_ | Escape pasted text
+__atom-fuzzy-grep.escapeOnPaste__                 | true                                 | _boolean_ | Escape pasted text
+__atom-fuzzy-grep.fixEnv__                        | true                                 | boolean   | Will fix $PATH variable when running your favourite grep tool, environment package should be installed.
 
 
 ## Contributing
