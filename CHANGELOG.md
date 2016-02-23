@@ -1,4 +1,4 @@
-## 0.14.0
+## 0.13.0
 * Update Readme with PATH and environment package info
 * Fix path variable on OS X. Ref #16
 * Fix readme, missed target in ctrl-f command
