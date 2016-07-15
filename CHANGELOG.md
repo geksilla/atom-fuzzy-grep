@@ -1,3 +1,6 @@
+## 0.14.0
+* Fix git repository detection within a symlink directory. Thanks [@lemming](https://github.com/lemming)
+
 ## 0.13.0
 * Update Readme with PATH and environment package info
 * Fix path variable on OS X. Ref #16
