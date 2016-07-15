@@ -68,7 +68,7 @@ module.exports =
 
     isGitRepo: ->
       atom.project.repositories.some (item)=>
-        @rootPath?.startsWith(item.repo?.workingDirectory) if item
+        @rootPath?.startsWith(item.repo?.openedWorkingDirectory) if item
 
     detectColumnFlag: ->
       /(ag|pt|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
