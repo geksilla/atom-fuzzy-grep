@@ -56,6 +56,10 @@ If you want to setup another one instead of **ag** here few examples:
 
     grep -r -n --color=never
 
+### [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+    rg --ignore-case --with-filename --no-heading --column
+
 ### git grep
 
     git grep -n -E

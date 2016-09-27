@@ -71,6 +71,6 @@ module.exports =
         @rootPath?.startsWith(item.repo?.openedWorkingDirectory) if item
 
     detectColumnFlag: ->
-      /(ag|pt|ack)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
+      /(ag|pt|ack|rg)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
 
     setEnv: (@env)->
