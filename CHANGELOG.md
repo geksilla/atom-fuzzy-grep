@@ -1,3 +1,6 @@
+## 0.15.0
+  * Add support for ripgrep (rg). (#36) Thanks [@jonboiser](https://github.com/jonboiser)
+
 ## 0.14.0
 * Fix git repository detection within a symlink directory. Thanks [@lemming](https://github.com/lemming)
 
