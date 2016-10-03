@@ -58,7 +58,7 @@ If you want to setup another one instead of **ag** here few examples:
 
 ### [ripgrep](https://github.com/BurntSushi/ripgrep)
 
-    rg --ignore-case --with-filename --no-heading --column
+    rg -i -n -H --no-heading --column
 
 ### git grep
 
