@@ -1,3 +1,8 @@
+## 0.16.0
+  * Removed support for environment package
+  * Added highlight for matched words
+  * Update ripgrep command to enable line-numbers
+
 ## 0.15.0
   * Add support for ripgrep (rg). (#36) Thanks [@jonboiser](https://github.com/jonboiser)
 
