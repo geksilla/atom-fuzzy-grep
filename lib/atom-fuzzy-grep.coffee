@@ -16,9 +16,3 @@ module.exports =
   createView: ->
     GrepView ?= require './atom-fuzzy-grep-view'
     @grepView ?= new GrepView()
-
-  consumeEnvironment: (env)->
-    @grepView?.setEnv(env) if @shouldFixEnv()
-
-  shouldFixEnv: ->
-    atom.config.get('atom-fuzzy-grep.fixEnv') and process.platform is 'darwin'

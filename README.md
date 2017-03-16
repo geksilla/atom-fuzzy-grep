@@ -29,15 +29,6 @@ To change this keybinding add following lines to your *keymaps.cson*:
   '<your_keys_here>': 'fuzzy-grep:toggleFileFilter'
 ```
 
-### OS X Users
-
-You can hit issues with `$PATH` variable when atom __not launched__ from terminal.
-If you like to open atom via spotlight, alfred, etc. install [environment](https://atom.io/packages/environment) package.
-
-So it is highly recommended to have [environment](https://atom.io/packages/environment) package installed!
-
-For more info see [this thread](https://github.com/geksilla/atom-fuzzy-grep/issues/16).
-
 ## Configuration
 
 You can specify any command you want by **Grep Command String** option in package settings,  [ag](https://github.com/ggreer/the_silver_searcher) is used by default.
