@@ -42,7 +42,22 @@ class GrepView extends SelectListView
   getFilterQuery: ->
     if @isFileFiltering then @filterEditorView.getText() else ''
 
-  viewForItem: ({filePath, line, content, error})->
+  getSearchValue: ->
+    unless @isFileFiltering then @filterEditorView.getText() else @tmpSearchString
+
+  foundRowItem: ($, rowContent) =>
+    try
+      reg = new RegExp(@getSearchValue(), 'ig')
+      matched = reg.exec rowContent
+    if reg and matched
+      $.span ->
+        $.span rowContent.slice(0, matched.index)
+        $.span matched[0], class: 'text-info matched-search'
+        $.span rowContent.slice(reg.lastIndex)
+    else
+      $.span rowContent
+
+  viewForItem: ({filePath, line, content, error}) ->
     that = @
     if error
       @setError error
@@ -51,7 +66,8 @@ class GrepView extends SelectListView
       @li class: 'two-lines', =>
         displayedPath = if that.showFullPath then filePath else path.basename filePath
         @div "#{displayedPath}:#{line+1}", class: 'primary-line file icon icon-file-text', 'data-name': displayedPath
-        @div content, class: 'secondary-line'
+        @div class: 'secondary-line', =>
+          that.foundRowItem(@, content)
 
   confirmed: (item)->
     @lastSearch = @filterEditorView.getText()
