@@ -21,7 +21,15 @@ module.exports =
         @commandString = atom.config.get 'atom-fuzzy-grep.gitGrepCommandString'
         @columnArg = false
       [command, args...] = @commandString.split(/\s/)
-      args.push @search
+      if @search.indexOf('-') >= 0
+        [argsX, searchX] = @search.split(/--/, 2)
+        argsX = argsX.split(/\s/).map((s)->s.trim()).filter((s)->s.length)
+        args = args.concat(argsX)
+        if typeof(searchX) is 'string'
+          args.push searchX.trim()
+      else
+        args.push @search
+      console.log args
       options = cwd: @rootPath, stdio: ['ignore', 'pipe', 'pipe'], env: @env
 
       stdout = (output)=>
