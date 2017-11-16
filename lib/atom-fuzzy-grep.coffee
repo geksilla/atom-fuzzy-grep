@@ -6,6 +6,7 @@ module.exports =
     @commandSubscription = atom.commands.add 'atom-workspace',
       'fuzzy-grep:toggle': => @createView().toggle(),
       'fuzzy-grep:toggleLastSearch': => @createView().toggleLastSearch(),
+      'fuzzy-grep:toggleWordUnderCursor': => @createView().toggleWordUnderCursor()
 
   deactivate: ->
     @commandSubscription?.dispose()

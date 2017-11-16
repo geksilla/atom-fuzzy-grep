@@ -73,7 +73,8 @@
   "activationCommands": {
     "atom-workspace": [
       "fuzzy-grep:toggle",
-      "fuzzy-grep:toggleLastSearch"
+      "fuzzy-grep:toggleLastSearch",
+      "fuzzy-grep:toggleWordUnderCursor"
     ]
   },
   "repository": "https://github.com/geksilla/atom-fuzzy-grep",
