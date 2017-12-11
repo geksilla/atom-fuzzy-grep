@@ -1,10 +1,13 @@
+## 0.17.0
+* add search for word under cursor (#44) Thanks [@astephenb](https://github.com/astephenb)
+
 ## 0.16.0
-  * Removed support for environment package
-  * Added highlight for matched words
-  * Update ripgrep command to enable line-numbers
+* Removed support for environment package
+* Added highlight for matched words
+* Update ripgrep command to enable line-numbers
 
 ## 0.15.0
-  * Add support for ripgrep (rg). (#36) Thanks [@jonboiser](https://github.com/jonboiser)
+* Add support for ripgrep (rg). (#36) Thanks [@jonboiser](https://github.com/jonboiser)
 
 ## 0.14.0
 * Fix git repository detection within a symlink directory. Thanks [@lemming](https://github.com/lemming)
