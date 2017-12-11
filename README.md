@@ -71,11 +71,12 @@ Check package settings for more info.
 
 Name                            | Selector         | Key Map               | Description
 --------------------------------|------------------|-----------------------|----------------------------------------------------------------------
-__fuzzy-grep:toggle__           | `atom-workspace` | 'ctrl-alt-g' | Open search dialog start typing and select item
-__fuzzy-grep:toggleLastSearch__ | `atom-workspace` | none                  | Open dialog with last search string
-__fuzzy-grep:toggleFileFilter__ | `atom-workspace .atom-fuzzy-grep atom-text-editor` | 'ctrl-f'     | When search dialog opened toggle file name filtering on found results
-__fuzzy-grep:pasteEscaped__ | `body.platform-linux atom-workspace .atom-fuzzy-grep atom-text-editor, body.platform-win32 atom-workspace .atom-fuzzy-grep atom-text-editor` | 'ctrl-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
-__fuzzy-grep:pasteEscaped__ | `body.platform-darwin atom-workspace .atom-fuzzy-grep atom-text-editor` | 'cmd-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
+__fuzzy-grep:toggle__                | `atom-workspace` | 'ctrl-alt-g' | Open search dialog start typing and select item
+__fuzzy-grep:toggleLastSearch__      | `atom-workspace` | none                  | Open dialog with last search string
+__fuzzy-grep:toggleWordUnderCursor__ | `atom-workspace` | 'cmd-*'               | Open dialog with word under cursor
+__fuzzy-grep:toggleFileFilter__      | `atom-workspace .atom-fuzzy-grep atom-text-editor` | 'ctrl-f'     | When search dialog opened toggle file name filtering on found results
+__fuzzy-grep:pasteEscaped__          | `body.platform-linux atom-workspace .atom-fuzzy-grep atom-text-editor, body.platform-win32 atom-workspace .atom-fuzzy-grep atom-text-editor` | 'ctrl-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
+__fuzzy-grep:pasteEscaped__          | `body.platform-darwin atom-workspace .atom-fuzzy-grep atom-text-editor` | 'cmd-v'     | Paste text to dialog and escape it, you can disable this behavior with `atom-fuzzy-grep.escapeOnPaste` config
 
 
 ## Configs
