@@ -134,6 +134,13 @@ class GrepView extends SelectListView
     @toggle()
     @filterEditorView.setText(@lastSearch || '')
 
+  toggleWordUnderCursor: ->
+    @toggle()
+    editor  = atom.workspace.getActivePaneItem()
+    pattern = editor?.getSelectedText()
+    pattern = editor?.getWordUnderCursor() if pattern === ""
+    @filterEditorView.setText(pattern || "")
+
   toggleFileFilter: =>
     @isFileFiltering = !@isFileFiltering
     if @isFileFiltering

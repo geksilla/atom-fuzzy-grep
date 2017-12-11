@@ -10,6 +10,7 @@
 
 'atom-workspace':
   'ctrl-alt-g': 'fuzzy-grep:toggle'
+  'cmd-*': 'fuzzy-grep:toggleWordUnderCursor'
 
 'body.platform-linux atom-workspace .atom-fuzzy-grep atom-text-editor, body.platform-win32 atom-workspace .atom-fuzzy-grep atom-text-editor':
   'ctrl-v': 'fuzzy-grep:pasteEscaped'
