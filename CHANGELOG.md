@@ -1,3 +1,6 @@
+## 0.17.1
+* use coffeescript equality check instead of === (#45) Thanks [@astephenb](https://github.com/astephenb)
+
 ## 0.17.0
 * add search for word under cursor (#44) Thanks [@astephenb](https://github.com/astephenb)
 
