@@ -67,8 +67,8 @@ module.exports =
       @process?.kill()
 
     isGitRepo: ->
-      atom.project.repositories.some (item)=>
-        @rootPath?.startsWith(item.repo?.openedWorkingDirectory) if item
+      atom.project.getRepositories().some (repo)=>
+        @rootPath?.startsWith(repo.getWorkingDirectory()) if repo
 
     detectColumnFlag: ->
       /(ag|pt|ack|rg)$/.test(@commandString.split(/\s/)[0]) and ~@commandString.indexOf('--column')
