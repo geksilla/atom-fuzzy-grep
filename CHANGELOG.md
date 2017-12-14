@@ -1,3 +1,6 @@
+## 0.17.2
+* Git project detection fails (fix #47)
+
 ## 0.17.1
 * use coffeescript equality check instead of === (#45) Thanks [@astephenb](https://github.com/astephenb)
 
