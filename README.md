@@ -1,5 +1,7 @@
 # atom-fuzzy-grep package
 
+### :warning: Looking for maintainers! :warning:
+
 ![demo](https://raw.githubusercontent.com/geksilla/atom-fuzzy-grep/master/demo.gif)
 
 ## Install
