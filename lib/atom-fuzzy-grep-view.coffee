@@ -6,6 +6,8 @@ Runner = require './runner'
 escapeStringRegexp = require 'escape-string-regexp'
 fuzzyFilter = null
 
+atom.themes.requireStylesheet(require.resolve('../stylesheets/select-list.less'))
+
 module.exports =
 class GrepView extends SelectListView
   preserveLastSearch: false
